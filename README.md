@@ -19,7 +19,7 @@ It is designed to:
   a bad `429 Too Many Requests` error code
 
 ## Installation
-```pip install git+https://github.com/chilledgeek/requests-wrapper.git```
+```pip install requests-wrapper```
 
 ## Example
 ``` python
@@ -42,7 +42,7 @@ for query in queries:
         http_method="get",
         api_key_header="Authorization",
         url="<my_url>",
-        params={"q": "<my_query_term>"}
+        params={"q": query}
     )
 
     responses.append(response)
