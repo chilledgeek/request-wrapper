@@ -1,4 +1,12 @@
 # requests-wrapper
+| Code quality checks  | Status |
+| ------------- |:-------------:|
+| CodeFactor      |  [![Codefactor](https://www.codefactor.io/repository/github/chilledgeek/requests-wrapper/badge?style=plastic)](https://www.codefactor.io/repository/github/chilledgeek/requests-wrappert) |
+| Github Workflows |  [![GithubWorkflows](https://github.com/chilledgeek/requests-wrapper/workflows/Tests/badge.svg?branch=master)](https://github.com/chilledgeek/requests-wrapper/actions?query=workflow%3ATests)|
+| Codecov | [![codecov](https://codecov.io/gh/chilledgeek/requests-wrapper/branch/master/graph/badge.svg)](https://codecov.io/gh/chilledgeek/requests-wrapper)|
+
+
+
 This repo is a wrapper programme based python's requests package, 
 adding a simple API key management capability.
 
