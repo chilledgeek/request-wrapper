@@ -25,9 +25,10 @@ It is designed to:
 ``` python
 from requests_wrapper.requests_wrapper import RequestsWrapper
 
-# Load API keys and rate limit when constructing the class instance
+# Load API keys, api_key_header and rate limit when constructing the class instance
 requests_wrapper = RequestsWrapper(
     api_keys=["<api_key1>", "<api_key2>"],
+    api_key_header="Authorization",
     call_limit_per_second=2
 )
 
@@ -37,10 +38,9 @@ responses = []
 for query in queries:
 
     # Calling this is almost the same as calling requests, 
-    # with the addition of specifying http_method and api_key_header 
+    # with the addition of specifying the http_method 
     response = requests_wrapper.call(
         http_method="get",
-        api_key_header="Authorization",
         url="<my_url>",
         params={"q": query}
     )

@@ -12,9 +12,11 @@ logger = logging.getLogger(__name__)
 class RequestsWrapper:
     def __init__(self,
                  api_keys: List[str],
+                 api_key_header: str = "Authorization",
                  call_limit_per_second: float = 0
                  ):
         self._api_key_trackers: List[ApiKeyTracker] = []
+        self._api_key_header = api_key_header
         for api_key in api_keys:
             api_key_tracker = ApiKeyTracker(api_key,
                                             call_limit_per_second)
@@ -27,7 +29,6 @@ class RequestsWrapper:
 
     def call(self,
              http_method: str,
-             api_key_header: str = "Authorization",
              **kwargs) -> Response:
         call_key_index = self._get_least_used_key_index()
         sleep_time = self._api_key_trackers[call_key_index].get_time_in_seconds_till_available()
@@ -39,7 +40,7 @@ class RequestsWrapper:
 
         if "headers" not in kwargs.keys():
             kwargs["headers"] = dict()
-        kwargs["headers"][api_key_header] = self._api_key_trackers[call_key_index].value
+        kwargs["headers"][self._api_key_header] = self._api_key_trackers[call_key_index].value
 
         response = http_request_function(**kwargs)
         logger.info(f"request call made using api_key {call_key_index}")
